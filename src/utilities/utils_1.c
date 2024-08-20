@@ -24,7 +24,11 @@ char *trim_back(const char *input)
     return (result);
 }
 
-
+/*
+    removes the spaces from the string and returns the
+    new string without the spaces in the middle of the
+    string and at the end of the string.
+*/
 
 char *white_sp_rm(const char *str)
 {
@@ -53,6 +57,12 @@ char *white_sp_rm(const char *str)
 }
 
 
+/*
+	compares two strings and returns 1 if the first
+	string is bigger than the second string, -1 if
+	the second string is bigger than the first string
+	and 0 if the strings are equal.
+*/
 
 int ft_strcmp(const char *str1, const char *str2)
 {
@@ -63,7 +73,7 @@ int ft_strcmp(const char *str1, const char *str2)
         return (2);
     while (str1[i] || str2[i])
     {
-        if (str1[i] || str2[i])
+        if (str1[i] == str2[i])// here was || instead of ==
             i++;
         else if (str1[i] > str2[i])
             return (1);
@@ -73,6 +83,11 @@ int ft_strcmp(const char *str1, const char *str2)
     return (0);
 }
 
+/*
+	counts the number of characters in a string and
+	returns the number of characters in the string and
+	append the null character at the end of the string.
+*/
 
 char	*ft_strcpy(char *dst, const char *src)
 {
@@ -89,19 +104,24 @@ char	*ft_strcpy(char *dst, const char *src)
 	return (start);
 }
 
+/*
+	counts the number of times a character appears
+	in a string and returns the number of times the
+	character appears in the string.
+*/
 
-int flag_count(char *str, char c)
+int	flag_counter(char *str, char c)
 {
-    int i;
-    int result;
+	int	i;
+	int	result;
 
-    i = 0;
-    result = 0;
-    while (str[i])
-    {
-        if (str[i] == c)
-            result++;
-        i++;
-    }
-    return (result);
+	i = 0;
+	result = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			result++;
+		i++;
+	}
+	return (result);
 }

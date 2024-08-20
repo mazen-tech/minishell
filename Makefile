@@ -9,14 +9,9 @@ RM = rm -rf
 LIBFT = ./libft/libft.a
 
 # COLORS
-RESET			:= \033[0m
-GREEN			=	\e[32m
-CYAN			:= \33[1;36m
-YELLOW			=	\e[033m
-BLUE			=	\e[34m
-WHITE			=	\e[00m
-RED				:= \033[1;31m
-BOLD			:= \033[1;1m
+RESET	= "\033[0m"
+GREEN	= "\033[32m"
+RED     = "\033[31m"
 
 # MINISHELL
 NAME = minishell
@@ -64,15 +59,17 @@ OBJ = $(addprefix $(OBJSDIR)/, $(SRC:.c=.o))
 # MAKE RULES
 all: $(NAME)
 
+
+# TARGETS
 $(NAME): $(OBJ)
 	$(MAKE) -C ./libft
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(RLFLAG) -o $(NAME)
-	echo "Everything Done!"
+	@echo $(GREEN)"Success: Compilation completed!"$(RESET)
 
 sani: re $(OBJ)
 	$(MAKE) -C ./libft
 	$(CSANI) $(CFLAGS) $(OBJ) $(LIBFT) $(RLFLAG) -o $(NAME)
-	echo "Compiled with fsanitizer"
+	@echo $(GREEN)"Success: Compiled with fsanitizer!"$(RESET)
 
 $(OBJSDIR)/%.o: %.c
 	mkdir -p $(@D)
@@ -85,7 +82,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME) $(SANI) $(OBJSDIR)
 	$(MAKE) fclean -C ./libft
-	echo "Everything Deleted..."
+	@echo $(RED)"Cleaned Successfully!"$(RESET)
 
 re: fclean all
 
